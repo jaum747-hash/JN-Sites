@@ -670,9 +670,7 @@ a { color: var(--verde); }
    7. Faixas infinitas de profissoes
    -------------------------------------------------------------------------- */
 .faixas {
-  display: grid;
-  gap: var(--e-2);
-  padding-block: var(--e-5);
+  padding-block: var(--e-3);
   overflow: hidden;
   border-block: 1px solid rgba(29, 31, 30, 0.08);
 }
@@ -681,13 +679,12 @@ a { color: var(--verde); }
 .faixa__trilho {
   display: flex;
   align-items: center;
-  gap: var(--e-2);
+  gap: var(--e-1);
   margin: 0;
-  padding: 0 var(--e-2) 0 0;
+  padding: 0 var(--e-1) 0 0;
   list-style: none;
-  animation: desliza 42s linear infinite;
+  animation: desliza 60s linear infinite;
 }
-.faixa--volta .faixa__trilho { animation-direction: reverse; animation-duration: 50s; }
 .faixa:hover .faixa__trilho { animation-play-state: paused; }
 
 @keyframes desliza { to { transform: translateX(-100%); } }
@@ -696,17 +693,17 @@ a { color: var(--verde); }
   display: flex;
   align-items: center;
   flex: none;
-  height: 60px;
-  padding: 0 var(--e-4);
-  border: 1px solid rgba(29, 31, 30, 0.2);
+  height: 40px;
+  padding: 0 var(--e-3);
+  border: 1px solid rgba(29, 31, 30, 0.16);
   border-radius: 999px;
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  font-size: 1.0625rem;
   font-weight: 600;
   white-space: nowrap;
 }
 .faixa__trilho li.faixa__foto {
-  width: 132px;
+  width: 88px;
   padding: 0;
   overflow: hidden;
   border: 0;
