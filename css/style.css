@@ -366,27 +366,6 @@ a { color: var(--verde); }
 
 .capa__grade { display: grid; gap: var(--e-8); align-items: center; }
 
-.autor {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  max-width: none;
-  margin-bottom: var(--e-3);
-  padding: 4px 16px 4px 4px;
-  border-radius: 999px;
-  background: var(--salvia);
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.autor img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
 .destaque { position: relative; white-space: nowrap; color: var(--verde); }
 .destaque__num { display: inline-block; min-width: 0.6em; text-align: center; }
 .destaque__traco {
@@ -1190,32 +1169,14 @@ a { color: var(--verde); }
 
 .plano {
   position: relative;
-  padding: var(--e-5) var(--e-4) var(--e-4);
-  border: 1px solid rgba(29, 31, 30, 0.12);
+  padding: var(--e-4);
+  border: 2px solid var(--verde);
   border-radius: 20px;
   background: var(--papel);
+  box-shadow: 0 24px 50px -30px rgba(15, 92, 77, 0.6);
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
 }
-.plano:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(29, 31, 30, 0.5); }
-
-.plano--destaque {
-  border: 2px solid var(--verde);
-  box-shadow: 0 24px 50px -30px rgba(15, 92, 77, 0.6);
-}
-
-.plano__selo {
-  position: absolute;
-  top: -13px;
-  left: var(--e-4);
-  padding: 3px 12px;
-  border-radius: 999px;
-  background: var(--ambar);
-  color: var(--grafite);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+.plano:hover { transform: translateY(-4px); box-shadow: 0 30px 56px -28px rgba(15, 92, 77, 0.65); }
 
 .plano__nome {
   margin: 0 0 var(--e-2);
