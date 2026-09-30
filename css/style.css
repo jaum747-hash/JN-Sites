@@ -520,12 +520,24 @@ a { color: var(--verde); }
   align-items: center;
 }
 .mini__texto { display: flex; flex-direction: column; align-items: flex-start; gap: 2.2cqi; }
+/* texto na cor principal (o coral do dentista nao passa no contraste);
+   o acento fica no ponto ao lado */
 .mini__rotulo {
-  color: var(--t-acento);
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2cqi;
+  color: var(--t-marca);
   font-size: 2.1cqi;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.mini__rotulo::before {
+  content: "";
+  width: 1.4cqi;
+  height: 1.4cqi;
+  border-radius: 50%;
+  background: var(--t-acento);
 }
 .mini__titulo {
   font-family: var(--fonte-titulo);
@@ -700,7 +712,7 @@ a { color: var(--verde); }
   border: 0;
   background: var(--salvia);
 }
-.faixa__foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; }
+.faixa__foto img { width: 100%; height: 100%; object-fit: cover; }
 
 /* --------------------------------------------------------------------------
    8. O que esta em jogo + antes e depois
