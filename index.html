@@ -28,80 +28,295 @@
 <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
+
+<!-- boot.js marca que o JS existe antes da pintura; o resto so roda depois do HTML -->
+<script src="js/boot.js"></script>
+<script src="js/vendor/gsap.min.js" defer></script>
+<script src="js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="js/vendor/SplitText.min.js" defer></script>
+<script src="js/main.js" defer></script>
 </head>
 <body>
 
 <a class="so-leitor" href="#conteudo">Ir para o conteúdo</a>
 
 <header class="topo">
-  <div class="envelope">
+  <span class="progresso" aria-hidden="true"></span>
+  <div class="envelope topo__linha">
     <a class="logo" href="#conteudo">joaoneto<span class="logo__ponto">.</span>sites</a>
+
+    <nav class="menu" aria-label="Seções">
+      <a href="#recursos">Recursos</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#precos">Preços</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+
+    <a class="botao botao--primario botao--pequeno"
+       href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20o%20meu.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+       target="_blank" rel="noopener">Quero meu site</a>
   </div>
 </header>
 
 <main id="conteudo">
 
   <!-- ==================================================================
-       1. Cabeçalho
+       1. Cabecalho: texto + site-demonstracao se montando
        ================================================================== -->
   <section class="capa">
-    <div class="envelope">
-      <h1>Seu site profissional no ar em 7 dias.</h1>
+    <div class="envelope capa__grade">
 
-      <p class="capa__texto">Para dentistas, psicólogos, advogados, contadores e outros profissionais que querem ser encontrados, passar confiança e receber contatos no WhatsApp. Eu faço tudo, você só aprova.</p>
+      <div class="capa__texto-bloco">
+        <p class="autor" data-surge>
+          <img src="assets/joao.webp" width="40" height="40" alt="">
+          Feito à mão pelo João, em Ourinhos-SP
+        </p>
 
-      <div class="botoes">
-        <a class="botao botao--primario"
-           href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20o%20meu.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
-           target="_blank" rel="noopener">Quero meu site</a>
-        <a class="botao botao--secundario" href="#modelos">Ver modelos</a>
+        <h1 id="capa-titulo">Seu site profissional no ar em <span class="destaque"><span class="destaque__num">7</span>&nbsp;dias<svg class="destaque__traco" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 9c40-6 110-8 196-3"/></svg></span>.</h1>
+
+        <p class="capa__texto" data-surge>Para dentistas, psicólogos, advogados, contadores e outros profissionais que querem ser encontrados, passar confiança e receber contatos no WhatsApp. Eu faço tudo, você só aprova.</p>
+
+        <div class="botoes" data-surge>
+          <a class="botao botao--primario botao--ima"
+             href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20o%20meu.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+             target="_blank" rel="noopener">Quero meu site</a>
+          <a class="botao botao--secundario" href="#modelos">Ver modelos</a>
+        </div>
+
+        <p class="capa__linha" data-surge>R$ 397 com hospedagem e endereço do site por 1 ano · Pronto em 7 dias úteis · Você só paga o restante quando aprovar</p>
       </div>
 
-      <p class="capa__linha">R$ 397 com hospedagem e endereço do site por 1 ano · Pronto em 7 dias úteis · Você só paga o restante quando aprovar</p>
+      <!-- Demonstracao decorativa: um site de cliente se montando e trocando
+           de profissao. O conteudo real da pagina nao depende dela. -->
+      <div class="palco" aria-hidden="true">
+        <div class="palco__brilho"></div>
+
+        <div class="navegador" data-tema="dentista">
+          <div class="navegador__barra">
+            <span class="navegador__bolinhas"><i></i><i></i><i></i></span>
+            <span class="navegador__endereco">
+              <svg viewBox="0 0 16 16" focusable="false"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+              <span data-demo="dominio">drahelenamarques.com.br</span>
+            </span>
+          </div>
+
+          <div class="mini">
+            <div class="mini__topo" data-monta>
+              <b class="mini__nome" data-demo="nome">Dra. Helena Marques</b>
+              <span class="mini__agendar">Agendar</span>
+            </div>
+            <div class="mini__capa">
+              <div class="mini__texto">
+                <span class="mini__rotulo" data-monta data-demo="rotulo">Cirurgiã-dentista · Ourinhos</span>
+                <b class="mini__titulo" data-monta data-demo="titulo">Dentista para quem gosta de entender cada passo.</b>
+                <span class="mini__linha" data-monta></span>
+                <span class="mini__linha mini__linha--curta" data-monta></span>
+                <span class="mini__cta" data-monta>
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
+                  Agendar pelo WhatsApp
+                </span>
+              </div>
+              <div class="mini__foto" data-monta>
+                <img data-demo="foto" src="assets/demo-dentista.webp" width="420" height="520" alt="">
+              </div>
+            </div>
+            <div class="mini__cartoes">
+              <i data-monta></i><i data-monta></i><i data-monta></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="celular celular--palco">
+          <div class="celular__tela">
+            <img data-demo="rolagem" src="assets/rolagem-dentista.webp" width="390" height="3600" alt="">
+          </div>
+        </div>
+
+        <span class="etiqueta etiqueta--prazo">
+          <svg viewBox="0 0 16 16" focusable="false"><path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1 1.1 1.1z"/></svg>
+          No ar em 7 dias
+        </span>
+        <span class="etiqueta etiqueta--zap">
+          <b>Nova mensagem</b>
+          “Oi! Vi seu site e quero agendar.”
+        </span>
+      </div>
+
     </div>
   </section>
 
   <!-- ==================================================================
-       2. O que está em jogo
+       Faixas infinitas: profissoes atendidas
+       ================================================================== -->
+  <section class="faixas" aria-label="Profissões que já podem ter um site assim">
+    <div class="faixa">
+      <ul class="faixa__trilho">
+        <li>Dentistas</li>
+        <li class="faixa__foto"><img src="assets/print-dentista.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Psicólogos</li>
+        <li>Advogados</li>
+        <li class="faixa__foto"><img src="assets/print-advocacia.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Contadores</li>
+        <li>Fisioterapeutas</li>
+        <li class="faixa__foto"><img src="assets/print-estetica.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Nutricionistas</li>
+      </ul>
+      <ul class="faixa__trilho" aria-hidden="true">
+        <li>Dentistas</li>
+        <li class="faixa__foto"><img src="assets/print-dentista.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Psicólogos</li>
+        <li>Advogados</li>
+        <li class="faixa__foto"><img src="assets/print-advocacia.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Contadores</li>
+        <li>Fisioterapeutas</li>
+        <li class="faixa__foto"><img src="assets/print-estetica.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Nutricionistas</li>
+      </ul>
+    </div>
+    <div class="faixa faixa--volta">
+      <ul class="faixa__trilho">
+        <li>Esteticistas</li>
+        <li>Médicos</li>
+        <li class="faixa__foto"><img src="assets/print-site-1.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Veterinários</li>
+        <li>Arquitetos</li>
+        <li class="faixa__foto"><img src="assets/print-dentista.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Fonoaudiólogos</li>
+        <li>Personal trainers</li>
+      </ul>
+      <ul class="faixa__trilho" aria-hidden="true">
+        <li>Esteticistas</li>
+        <li>Médicos</li>
+        <li class="faixa__foto"><img src="assets/print-site-1.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Veterinários</li>
+        <li>Arquitetos</li>
+        <li class="faixa__foto"><img src="assets/print-dentista.webp" width="780" height="1424" alt="" loading="lazy"></li>
+        <li>Fonoaudiólogos</li>
+        <li>Personal trainers</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       2. O que esta em jogo + antes e depois
        ================================================================== -->
   <section class="secao secao--salvia" aria-labelledby="t-jogo">
-    <div class="envelope">
-      <h2 id="t-jogo">Antes de marcar, seu cliente pesquisa seu nome.</h2>
+    <div class="envelope jogo">
+      <div>
+        <h2 id="t-jogo" data-linhas>Antes de marcar, seu cliente pesquisa seu nome.</h2>
 
-      <p>Ele digita seu nome no Google ou abre seu Instagram e tenta descobrir três coisas: se você é bom, onde você atende e como falar com você. Se não encontra, ou encontra algo com cara de amador, ele volta para a busca e chama o próximo da lista.</p>
+        <p data-surge>Ele digita seu nome no Google ou abre seu Instagram e tenta descobrir três coisas: se você é bom, onde você atende e como falar com você. Se não encontra, ou encontra algo com cara de amador, ele volta para a busca e chama o próximo da lista.</p>
 
-      <p>Você não perde esse cliente por ser pior. Perde por parecer menos profissional do que é.</p>
+        <p data-surge><b>Você não perde esse cliente por ser pior. Perde por parecer menos profissional do que é.</b></p>
+      </div>
+
+      <figure class="comparar" data-surge>
+        <div class="comparar__celular">
+         <div class="comparar__area">
+          <!-- Antes: so o perfil do Instagram -->
+          <div class="comparar__antes" aria-hidden="true">
+            <div class="insta">
+              <div class="insta__topo">dra.helenamarques</div>
+              <div class="insta__perfil">
+                <img src="assets/demo-dentista.webp" width="420" height="520" alt="" loading="lazy">
+                <div class="insta__numeros"><span><b>212</b>posts</span><span><b>1.043</b>seguidores</span><span><b>318</b>seguindo</span></div>
+              </div>
+              <span class="insta__linha"></span>
+              <span class="insta__linha insta__linha--curta"></span>
+              <span class="insta__link">link na bio: nenhum</span>
+              <div class="insta__grade"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <!-- Depois: o site pronto -->
+          <div class="comparar__depois" aria-hidden="true">
+            <img src="assets/rolagem-dentista.webp" width="390" height="3600" alt="" loading="lazy">
+          </div>
+          <span class="comparar__rotulo comparar__rotulo--antes" aria-hidden="true">Antes</span>
+          <span class="comparar__rotulo comparar__rotulo--depois" aria-hidden="true">Depois</span>
+          <span class="comparar__linha" aria-hidden="true"></span>
+          <input class="comparar__controle" type="range" min="0" max="100" value="50"
+                 aria-label="Comparar antes e depois: arraste para os lados">
+         </div>
+        </div>
+        <figcaption>Arraste: à esquerda, só o Instagram. À direita, o site que responde tudo.</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ==================================================================
-       3. O que você ganha
+       3. Recursos, cada um funcionando
        ================================================================== -->
-  <section class="secao" aria-labelledby="t-ganha">
+  <section class="secao" id="recursos" aria-labelledby="t-ganha">
     <div class="envelope">
-      <h2 id="t-ganha">Um site que trabalha por você, mesmo quando você está atendendo.</h2>
+      <h2 id="t-ganha" data-linhas>Um site que trabalha por você, mesmo quando você está atendendo.</h2>
 
-      <ul class="cartoes">
-        <li class="cartao">
-          <b>Primeira impressão à altura do seu trabalho.</b>
-          <p>Um endereço só seu, com a sua foto, sua formação e o que você faz.</p>
+      <ul class="recursos">
+
+        <li class="recurso recurso--google" data-surge>
+          <div class="demo demo--google" aria-hidden="true">
+            <div class="busca"><svg viewBox="0 0 24 24" focusable="false"><path d="M10 3a7 7 0 1 0 4.2 12.6l5.1 5.1 1.4-1.4-5.1-5.1A7 7 0 0 0 10 3Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"/></svg><span data-digita="dra helena marques ourinhos">dra helena marques ourinhos</span><i class="cursor"></i></div>
+            <div class="resultado">
+              <span class="resultado__url">drahelenamarques.com.br</span>
+              <b class="resultado__titulo">Dra. Helena Marques · Dentista em Ourinhos</b>
+              <span class="resultado__nota"><span class="estrelas"><i></i><i></i><i></i><i></i><i></i></span> 5,0 · 48 avaliações</span>
+              <span class="resultado__texto">Consulta sem pressa e plano claro de tratamento. Agende pelo WhatsApp.</span>
+            </div>
+          </div>
+          <b>Encontrado quando pesquisam seu nome.</b>
+          <p>Ligado ao seu perfil do Google, com endereço, avaliações e o caminho até o seu WhatsApp.</p>
         </li>
-        <li class="cartao">
+
+        <li class="recurso recurso--zap" data-surge>
+          <div class="demo demo--zap" aria-hidden="true">
+            <div class="zapdemo">
+              <div class="zapdemo__topo"><i></i><b>Dra. Helena</b></div>
+              <span class="bolha bolha--dele">Oi! Vi seu site e quero agendar uma avaliação.</span>
+              <div class="zapdemo__resposta">
+                <span class="digitando"><i></i><i></i><i></i></span>
+                <span class="bolha bolha--sua">Claro! Tenho quinta às 14h. Pode ser?</span>
+              </div>
+            </div>
+          </div>
           <b>Contato em um toque.</b>
           <p>Botão direto para o seu WhatsApp em todas as partes do site.</p>
         </li>
-        <li class="cartao">
+
+        <li class="recurso recurso--endereco" data-surge>
+          <div class="demo demo--endereco" aria-hidden="true">
+            <div class="barra-url"><svg viewBox="0 0 16 16" focusable="false"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg><span data-digita="seunome.com.br">seunome.com.br</span><i class="cursor"></i></div>
+            <span class="registro">Registrado no seu nome <svg viewBox="0 0 16 16" focusable="false"><path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1 1.1 1.1z"/></svg></span>
+          </div>
+          <b>Um endereço só seu.</b>
+          <p>Com a sua foto, sua formação e o que você faz. E o endereço do site fica registrado no seu nome.</p>
+        </li>
+
+        <li class="recurso recurso--mapa" data-surge>
+          <div class="demo demo--mapa" aria-hidden="true">
+            <svg class="mapa" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <path class="mapa__quadra" d="M0 0h240v140H0z"/>
+              <path class="mapa__rua" d="M-10 40 250 28M-10 100l260 14M60-10l-8 160M170-10l14 160"/>
+              <path class="mapa__rua mapa__rua--fina" d="M-10 70h260M115-10v160"/>
+            </svg>
+            <span class="pino"><svg viewBox="0 0 24 32" focusable="false"><path d="M12 0a12 12 0 0 0-12 12c0 9 12 20 12 20s12-11 12-20A12 12 0 0 0 12 0Zm0 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z"/></svg></span>
+            <span class="horario"><b>Aberto agora</b>Seg a sex · 8h às 18h</span>
+          </div>
           <b>Menos perguntas repetidas.</b>
           <p>Endereço, horários, serviços e dúvidas comuns respondidos antes da pessoa te chamar.</p>
         </li>
-        <li class="cartao">
+
+        <li class="recurso recurso--celular" data-surge>
+          <div class="demo demo--celular" aria-hidden="true">
+            <div class="responsivo">
+              <div class="responsivo__caixa">
+                <span class="responsivo__foto"></span>
+                <span class="responsivo__textos"><i></i><i></i><i class="curta"></i><b></b></span>
+              </div>
+            </div>
+          </div>
           <b>Perfeito no celular.</b>
-          <p>Onde quase todo mundo vai abrir.</p>
+          <p>Onde quase todo mundo vai abrir. O mesmo site se ajusta a qualquer tela.</p>
         </li>
-        <li class="cartao">
-          <b>Seu, de verdade.</b>
-          <p>O endereço do site fica registrado no seu nome.</p>
-        </li>
+
       </ul>
     </div>
   </section>
@@ -113,17 +328,26 @@
     <div class="envelope">
       <div class="quemfaz">
 
-        <figure class="retrato">
+        <figure class="retrato" data-surge>
           <img src="assets/joao.webp" width="600" height="800"
                alt="João Neto, que faz os sites" loading="lazy" decoding="async">
         </figure>
 
         <div>
-          <h2 id="t-quem">Oi, eu sou o João.</h2>
+          <h2 id="t-quem" data-linhas>Oi, eu sou o João.</h2>
 
-          <p>Eu sei que você não escolheu sua profissão para ficar mexendo em site. Por isso eu cuido de tudo: escrevo os textos, monto o site, coloco no ar e fico disponível no WhatsApp depois. Você responde um formulário de 10 minutos, me manda algumas fotos e aprova o resultado.</p>
+          <p data-surge>Eu sei que você não escolheu sua profissão para ficar mexendo em site. Por isso eu cuido de tudo: escrevo os textos, monto o site, coloco no ar e fico disponível no WhatsApp depois. Você responde um formulário de 10 minutos, me manda algumas fotos e aprova o resultado.</p>
 
-          <p>Trabalho sozinho, de propósito: você fala direto com quem faz, sem atendente e sem ticket.</p>
+          <p data-surge>Trabalho sozinho, de propósito: você fala direto com quem faz, sem atendente e sem ticket.</p>
+
+          <div class="notas" data-surge>
+            <ul class="notas__lista">
+              <li class="nota"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="nota__fundo" cx="24" cy="24" r="21"/><circle class="nota__arco" cx="24" cy="24" r="21" pathLength="100"/></svg><b class="nota__valor">100</b><span>Acessibilidade</span></li>
+              <li class="nota"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="nota__fundo" cx="24" cy="24" r="21"/><circle class="nota__arco" cx="24" cy="24" r="21" pathLength="100"/></svg><b class="nota__valor">100</b><span>Boas práticas</span></li>
+              <li class="nota"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="nota__fundo" cx="24" cy="24" r="21"/><circle class="nota__arco" cx="24" cy="24" r="21" pathLength="100"/></svg><b class="nota__valor">100</b><span>SEO</span></li>
+            </ul>
+            <p class="notas__legenda">Nota deste site no Lighthouse, o teste de qualidade do Google para sites. É o mesmo cuidado que vai no seu.</p>
+          </div>
 
           <!-- [DEPOIMENTOS] Nada inventado: a lista só entra quando houver
                2 ou 3 depoimentos reais. Modelo de um item:
@@ -140,19 +364,20 @@
   </section>
 
   <!-- ==================================================================
-       5. Modelos e trabalhos
+       5. Modelos e trabalhos: a tela rola junto com a pagina
        ================================================================== -->
   <section class="secao" id="modelos" aria-labelledby="t-modelos">
     <div class="envelope">
-      <h2 id="t-modelos">Veja como fica.</h2>
+      <h2 id="t-modelos" data-linhas>Veja como fica.</h2>
+      <p class="secao__apoio" data-surge>Role a página: a tela de cada celular rola junto. Toque em um deles para abrir o site de verdade.</p>
 
       <ul class="galeria">
 
-        <li>
+        <li data-surge>
           <figure class="pecas">
             <a class="celular" href="https://joaoneto-modelo-dentista.vercel.app" target="_blank" rel="noopener">
               <div class="celular__tela">
-                <img src="assets/print-dentista.webp" width="780" height="1424"
+                <img src="assets/rolagem-dentista.webp" width="390" height="3600"
                      alt="Site-modelo de dentista, aberto no celular" loading="lazy" decoding="async">
               </div>
             </a>
@@ -160,11 +385,11 @@
           </figure>
         </li>
 
-        <li>
+        <li data-surge>
           <figure class="pecas">
             <a class="celular" href="https://joaoneto-modelo-advocacia.vercel.app" target="_blank" rel="noopener">
               <div class="celular__tela">
-                <img src="assets/print-advocacia.webp" width="780" height="1424"
+                <img src="assets/rolagem-advocacia.webp" width="390" height="3600"
                      alt="Site-modelo de escritório de advocacia, aberto no celular" loading="lazy" decoding="async">
               </div>
             </a>
@@ -172,11 +397,11 @@
           </figure>
         </li>
 
-        <li>
+        <li data-surge>
           <figure class="pecas">
             <a class="celular" href="https://joaoneto-modelo-estetica.vercel.app" target="_blank" rel="noopener">
               <div class="celular__tela">
-                <img src="assets/print-estetica.webp" width="780" height="1424"
+                <img src="assets/rolagem-estetica.webp" width="390" height="3600"
                      alt="Site-modelo de estúdio de estética, aberto no celular" loading="lazy" decoding="async">
               </div>
             </a>
@@ -184,11 +409,11 @@
           </figure>
         </li>
 
-        <li>
+        <li data-surge>
           <figure class="pecas">
             <a class="celular" href="https://thainadias.vercel.app" target="_blank" rel="noopener">
               <div class="celular__tela">
-                <img src="assets/print-site-1.webp" width="780" height="1424"
+                <img src="assets/rolagem-thaina.webp" width="390" height="3600"
                      alt="Site da Thainá Dias, social media, feito pelo João e aberto no celular"
                      loading="lazy" decoding="async">
               </div>
@@ -202,29 +427,30 @@
   </section>
 
   <!-- ==================================================================
-       6. Preços
+       6. Precos
        ================================================================== -->
-  <section class="secao secao--salvia" aria-labelledby="t-precos">
+  <section class="secao secao--salvia" id="precos" aria-labelledby="t-precos">
     <div class="envelope">
-      <h2 id="t-precos">Preço fechado. Sem surpresa.</h2>
+      <h2 id="t-precos" data-linhas>Preço fechado. Sem surpresa.</h2>
 
       <div class="planos">
-        <article class="plano plano--destaque">
+        <article class="plano plano--destaque" data-surge>
+          <span class="plano__selo">Recomendado</span>
           <h3 class="plano__nome">Site Presença: R$ 397</h3>
           <p>Página completa com até 7 seções, textos inclusos, botão de WhatsApp, pronto em 7 dias úteis. Hospedagem e endereço do site inclusos por 1 ano. Em até 3x no cartão.</p>
         </article>
 
-        <article class="plano">
+        <article class="plano" data-surge>
           <h3 class="plano__nome">Site Completo: a partir de R$ 1.497</h3>
           <p>Até 5 páginas, uma para cada serviço ou área de atuação. Pronto em 12 dias úteis.</p>
         </article>
       </div>
 
-      <div class="escolha">
+      <div class="escolha" data-surge>
         <p><b>Depois da entrega, você escolhe:</b> fica com o site no seu nome e cuida dele, ou deixa comigo a partir de R$ 47 por mês, com segurança, backup e alterações inclusas, feitas no mesmo dia.</p>
       </div>
 
-      <a class="botao botao--primario"
+      <a class="botao botao--primario botao--ima"
          href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20o%20meu.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
          target="_blank" rel="noopener">Quero meu site</a>
     </div>
@@ -235,7 +461,7 @@
        ================================================================== -->
   <section class="secao" aria-labelledby="t-como">
     <div class="envelope">
-      <h2 id="t-como">Três passos. Uma conversa.</h2>
+      <h2 id="t-como" data-linhas>Três passos. Uma conversa.</h2>
 
       <ol class="passos">
         <li class="passo">
@@ -254,9 +480,9 @@
   <!-- ==================================================================
        8. Perguntas frequentes
        ================================================================== -->
-  <section class="secao secao--salvia" aria-labelledby="t-faq">
+  <section class="secao secao--salvia" id="duvidas" aria-labelledby="t-faq">
     <div class="envelope">
-      <h2 id="t-faq">Perguntas frequentes</h2>
+      <h2 id="t-faq" data-linhas>Perguntas frequentes</h2>
 
       <div class="faq">
         <details>
@@ -297,11 +523,11 @@
        ================================================================== -->
   <section class="secao fechamento" aria-labelledby="t-fim">
     <div class="envelope">
-      <h2 id="t-fim">Seu trabalho já é profissional. Sua presença na internet também pode ser.</h2>
+      <h2 id="t-fim" data-linhas>Seu trabalho já é profissional. Sua presença na internet também pode ser.</h2>
 
-      <p>Me chama no WhatsApp, me conta o que você faz e em 7 dias seu site está no ar.</p>
+      <p data-surge>Me chama no WhatsApp, me conta o que você faz e em 7 dias seu site está no ar.</p>
 
-      <a class="botao botao--primario botao--grande"
+      <a class="botao botao--claro botao--grande botao--ima"
          href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20o%20meu.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
          target="_blank" rel="noopener">Chamar o João no WhatsApp</a>
     </div>
@@ -310,7 +536,7 @@
 </main>
 
 <!-- ====================================================================
-     Rodapé
+     Rodape
      ==================================================================== -->
 <footer class="rodape">
   <div class="envelope">
