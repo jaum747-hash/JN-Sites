@@ -25,6 +25,29 @@
   window.addEventListener("scroll", marcaTopo, { passive: true });
   marcaTopo();
 
+  /* ------------------------------------------------------------------------
+     Celulares com site: com o mouse em cima, a altura do cursor decide
+     quanto do site aparece (topo = inicio, base = fim). Ao sair, volta ao
+     topo. E a pessoa que controla, entao vale mesmo sem "movimento".
+     No toque nao ha hover: o celular fica no topo e o toque abre o site.
+     O celular do palco da home tem animacao propria e fica de fora.
+     ------------------------------------------------------------------------ */
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll(".celular:not(.celular--palco)").forEach(function (cel) {
+      var img = cel.querySelector(".celular__tela img");
+      if (!img) return;
+      var curso = 0;
+      cel.addEventListener("pointerenter", function () { curso = img.offsetHeight - img.parentElement.clientHeight; });
+      cel.addEventListener("pointermove", function (e) {
+        var r = cel.getBoundingClientRect();
+        /* margem de 12% em cima e embaixo: fica facil chegar ao inicio e ao fim */
+        var p = Math.min(1, Math.max(0, ((e.clientY - r.top) / r.height - 0.12) / 0.76));
+        img.style.transform = "translateY(" + (-p * curso) + "px)";
+      });
+      cel.addEventListener("pointerleave", function () { img.style.transform = ""; });
+    });
+  }
+
   /* Sem movimento (preferencia do usuario ou GSAP nao carregou): para aqui */
   if (!raiz.classList.contains("movimento") || !window.gsap || !window.ScrollTrigger || !window.SplitText) {
     raiz.classList.remove("movimento");
@@ -36,37 +59,12 @@
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
   /* ------------------------------------------------------------------------
-     1. Cabecalho: titulo por linha, traco ambar, 1 -> 7
+     1. Cabecalho: o texto ja nasce visivel (e o que o Google mede como
+        carregamento); so o traco ambar se desenha
      ------------------------------------------------------------------------ */
-  var titulo = document.getElementById("capa-titulo");
-  gsap.set(titulo, { visibility: "visible" });
-  SplitText.create(titulo, {
-    type: "lines",
-    mask: "lines",
-    autoSplit: true,
-    onSplit: function (self) {
-      return gsap.from(self.lines, { yPercent: 110, duration: 1.1, stagger: 0.12, ease: "power4.out", delay: 0.1 });
-    }
-  });
-
   gsap.fromTo(".destaque__traco",
     { clipPath: "inset(0 100% 0 0)" },
-    { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power2.inOut", delay: 0.9 });
-
-  /* o SplitText refaz o titulo quando as fontes chegam, entao o numero e
-     buscado de novo a cada quadro em vez de guardado */
-  if (titulo.querySelector(".destaque__num")) {
-    var contagem = { v: 1 };
-    gsap.to(contagem, {
-      v: 7, duration: 1.1, delay: 0.45, ease: "power1.out",
-      onUpdate: function () {
-        var numero = titulo.querySelector(".destaque__num");
-        if (numero) numero.textContent = Math.round(contagem.v);
-      }
-    });
-  }
-
-  gsap.to(".capa [data-surge]", { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.1, ease: "power3.out", delay: 0.3 });
+    { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power2.inOut", delay: 0.4 });
 
   /* ------------------------------------------------------------------------
      2. Palco (so na home): o site se monta, depois troca de profissao em ciclo
@@ -83,11 +81,11 @@
     var temas = [
       /* titulos iguais aos das capas dos sites-modelo: mudou la, muda aqui */
       { tema: "dentista", dominio: "drahelenamarques.com.br", nome: "Dra. Helena Marques", rotulo: "Cirurgiã-dentista · Ourinhos",
-        titulo: "Dentista em Ourinhos para toda a família.", foto: "assets/demo-dentista.webp", rolagem: "assets/rolagem-dentista.webp" },
+        titulo: "Dentista em Ourinhos para toda a família.", foto: "assets/demo-dentista.webp", rolagem: "assets/rolagem-dentista.webp?v=2" },
       { tema: "advocacia", dominio: "vieiraalves.adv.br", nome: "Vieira & Alves", rotulo: "Advocacia · Ourinhos",
-        titulo: "Advocacia em Ourinhos com atendimento direto dos sócios.", foto: "assets/demo-advocacia.webp", rolagem: "assets/rolagem-advocacia.webp" },
+        titulo: "Advocacia em Ourinhos com atendimento direto dos sócios.", foto: "assets/demo-advocacia.webp", rolagem: "assets/rolagem-advocacia.webp?v=2" },
       { tema: "estetica", dominio: "studiolia.com.br", nome: "Studio Lia", rotulo: "Estética facial e corporal",
-        titulo: "Uma hora só sua.", foto: "assets/demo-estetica.webp", rolagem: "assets/rolagem-estetica.webp" }
+        titulo: "Uma hora só sua.", foto: "assets/demo-estetica.webp", rolagem: "assets/rolagem-estetica.webp?v=2" }
     ];
     /* deixa as fotos dos outros temas no cache pra troca nao piscar */
     temas.slice(1).forEach(function (t) { new Image().src = t.foto; new Image().src = t.rolagem; });
@@ -133,27 +131,11 @@
   })();
 
   /* ------------------------------------------------------------------------
-     2b. Leque do portfolio: celulares entram em cascata e cada tela rola
-         sozinha, num ritmo proprio; param quando o leque sai da tela
+     2b. Leque do portfolio: celulares entram em cascata, uma vez
      ------------------------------------------------------------------------ */
-  var leque = document.querySelector(".leque");
-  if (leque) {
-    var celularesLeque = leque.querySelectorAll(".celular");
-    gsap.fromTo(celularesLeque, { autoAlpha: 0, y: 80 },
-      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.12, ease: "power3.out", delay: 0.35 });
-    gsap.fromTo(".etiqueta--leque", { autoAlpha: 0, scale: 0.8 },
-      { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)", delay: 1.2 });
-
-    var rolagensLeque = Array.prototype.map.call(leque.querySelectorAll(".celular__tela img"), function (img, k) {
-      return gsap.to(img, {
-        y: function () { return -(img.offsetHeight - img.parentElement.clientHeight); },
-        duration: 11 + k * 2, ease: "sine.inOut", repeat: -1, yoyo: true, repeatDelay: 1, delay: 1.4 + k * 0.6
-      });
-    });
-    new IntersectionObserver(function (e) {
-      rolagensLeque.forEach(function (t) { e[0].isIntersecting ? t.resume() : t.pause(); });
-    }).observe(leque);
-    window.addEventListener("load", function () { rolagensLeque.forEach(function (t) { t.invalidate(); }); });
+  if (document.querySelector(".leque")) {
+    gsap.fromTo(".leque .celular", { autoAlpha: 0, y: 80 },
+      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.12, ease: "power3.out", delay: 0.2 });
   }
 
   /* ------------------------------------------------------------------------
@@ -181,9 +163,6 @@
       gsap.to(lote, { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.1, ease: "power3.out", overwrite: true });
     }
   });
-
-  /* barra de progresso no topo */
-  gsap.to(".progresso", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
 
   /* ------------------------------------------------------------------------
      4. Demos dos recursos: so rodam quando estao na tela
@@ -239,37 +218,13 @@
   }
 
   /* ------------------------------------------------------------------------
-     5. Retrato com leve paralaxe; telas da galeria e dos casos rolam com a pagina
+     5. Retrato com leve paralaxe
      ------------------------------------------------------------------------ */
   if (document.querySelector(".retrato")) {
     gsap.fromTo(".retrato img",
       { scale: 1.14, yPercent: -5 },
       { scale: 1.14, yPercent: 5, ease: "none", scrollTrigger: { trigger: ".retrato", scrub: true } });
   }
-
-  document.querySelectorAll(".caso").forEach(function (caso) {
-    var img = caso.querySelector(".celular__tela img");
-    gsap.to(img, {
-      y: function () { return -(img.offsetHeight - img.parentElement.clientHeight); },
-      ease: "none",
-      scrollTrigger: { trigger: caso, start: "top 85%", end: "bottom 15%", scrub: 0.8, invalidateOnRefresh: true }
-    });
-  });
-
-  document.querySelectorAll(".galeria .celular__tela img").forEach(function (img, k) {
-    var telaModelo = img.parentElement;
-    gsap.to(img, {
-      y: function () { return -(img.offsetHeight - telaModelo.clientHeight); },
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".galeria",
-        start: "top 80%",
-        end: "bottom 10%",
-        scrub: 0.6 + k * 0.2,
-        invalidateOnRefresh: true
-      }
-    });
-  });
 
   /* ------------------------------------------------------------------------
      6. Como funciona: circulo aparece, fio cresce ate o proximo
@@ -283,22 +238,6 @@
     linhaPassos.to(p, { "--s": 1, duration: 0.3, ease: "back.out(2)" });
     linhaPassos.to(p, { "--p": 1, duration: 0.7, ease: "none" });
   });
-
-  /* ------------------------------------------------------------------------
-     7. Botoes com ima: seguem o cursor de leve (so com mouse)
-     ------------------------------------------------------------------------ */
-  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    document.querySelectorAll(".botao--ima").forEach(function (b) {
-      var xPara = gsap.quickTo(b, "x", { duration: 0.5, ease: "power3" });
-      var yPara = gsap.quickTo(b, "y", { duration: 0.5, ease: "power3" });
-      b.addEventListener("pointermove", function (e) {
-        var r = b.getBoundingClientRect();
-        xPara((e.clientX - r.left - r.width / 2) * 0.3);
-        yPara((e.clientY - r.top - r.height / 2) * 0.4);
-      });
-      b.addEventListener("pointerleave", function () { xPara(0); yPara(0); });
-    });
-  }
 
   /* recalcula as medidas depois que as imagens e fontes chegam */
   window.addEventListener("load", function () { ScrollTrigger.refresh(); if (rolaTela) rolaTela.invalidate(); });

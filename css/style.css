@@ -163,9 +163,9 @@ a { color: var(--verde); }
 /* Estados iniciais do que vai ser animado. So valem com a classe
    .movimento, que o boot.js poe quando ha JS e o usuario aceita movimento.
    Sem ela, tudo aparece pronto. */
-.movimento [data-surge] { opacity: 0; transform: translateY(24px); }
+/* a capa fica de fora: aparece no primeiro quadro, sem esperar o JS */
+.movimento main > section:not(.capa) [data-surge] { opacity: 0; transform: translateY(24px); }
 .movimento [data-linhas],
-.movimento #capa-titulo,
 .movimento .palco .navegador,
 .movimento .palco .celular--palco,
 .movimento .palco .etiqueta,
@@ -250,18 +250,6 @@ a { color: var(--verde); }
   align-items: center;
   justify-content: space-between;
   gap: var(--e-3);
-}
-
-/* barra fina de progresso da leitura */
-.progresso {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 2px;
-  background: var(--ambar);
-  transform: scaleX(0);
-  transform-origin: left;
 }
 
 .menu { display: none; gap: var(--e-4); }
@@ -415,11 +403,6 @@ a { color: var(--verde); }
     radial-gradient(closest-side, rgba(15, 92, 77, 0.22), transparent 72%) 12% 88% / 65% 65% no-repeat,
     radial-gradient(closest-side, var(--salvia), transparent 78%) 50% 50% / 100% 100% no-repeat;
   filter: blur(18px);
-  animation: respira 10s ease-in-out infinite alternate;
-}
-
-@keyframes respira {
-  to { transform: scale(1.08) rotate(4deg); }
 }
 
 .navegador {
@@ -586,6 +569,9 @@ a { color: var(--verde); }
   background: var(--papel);
 }
 .celular__tela img { width: 100%; height: auto; will-change: transform; }
+/* rolagem com o mouse (main.js): a transicao suaviza o movimento do cursor.
+   O palco fica de fora porque o GSAP ja anima a tela dele quadro a quadro. */
+.celular:not(.celular--palco) .celular__tela img { transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
 .celular--palco {
   position: absolute;
@@ -1149,12 +1135,10 @@ a { color: var(--verde); }
   font-size: 0.9375rem;
 }
 
-.galeria .celular { transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease; }
+/* sem inclinar: o celular precisa ficar parado sob o mouse para rolar */
+.galeria .celular { transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease; }
 @media (hover: hover) and (pointer: fine) {
-  .galeria .celular:hover {
-    transform: perspective(900px) rotateY(-9deg) rotateX(4deg) translateY(-8px);
-    box-shadow: 24px 44px 60px -30px rgba(29, 31, 30, 0.55);
-  }
+  .galeria .celular:hover { translate: 0 -6px; box-shadow: 0 40px 60px -30px rgba(29, 31, 30, 0.6); }
 }
 
 /* --------------------------------------------------------------------------
@@ -1318,7 +1302,6 @@ a { color: var(--verde); }
   height: 70vmax;
   translate: -50% -50%;
   background: radial-gradient(closest-side, rgba(233, 169, 58, 0.3), transparent 70%);
-  animation: respira 9s ease-in-out infinite alternate;
 }
 .fechamento .envelope {
   position: relative;
@@ -1383,7 +1366,7 @@ a { color: var(--verde); }
   inset: 0;
   border-radius: 50%;
   border: 2px solid var(--verde);
-  animation: anel 3.2s ease-out infinite;
+  animation: anel 3.2s ease-out 2s 3; /* chama atencao 3 vezes e para */
 }
 @keyframes anel {
   0% { transform: scale(1); opacity: 0.7; }
@@ -1486,7 +1469,6 @@ a { color: var(--verde); }
     radial-gradient(closest-side, rgba(15, 92, 77, 0.2), transparent 72%) 15% 85% / 60% 60% no-repeat,
     radial-gradient(closest-side, var(--salvia), transparent 78%) 50% 50% / 100% 100% no-repeat;
   filter: blur(18px);
-  animation: respira 10s ease-in-out infinite alternate;
 }
 .leque .celular {
   flex: none;
@@ -1503,7 +1485,7 @@ a { color: var(--verde); }
 .leque .celular:nth-child(2) { rotate: -2deg; z-index: 3; }
 .leque .celular:nth-child(3) { rotate: 4deg; translate: 0 12px; z-index: 2; }
 .leque .celular:nth-child(4) { display: none; rotate: 10deg; translate: 0 34px; z-index: 1; }
-.leque .celular:hover { z-index: 4; scale: 1.05; }
+.leque .celular:hover { z-index: 4; scale: 1.04; }
 .etiqueta--leque { left: 2%; bottom: 6%; animation: flutua 5s ease-in-out infinite; }
 
 .atalhos {
