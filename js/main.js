@@ -55,75 +55,105 @@
 
   /* o SplitText refaz o titulo quando as fontes chegam, entao o numero e
      buscado de novo a cada quadro em vez de guardado */
-  var contagem = { v: 1 };
-  gsap.to(contagem, {
-    v: 7, duration: 1.1, delay: 0.45, ease: "power1.out",
-    onUpdate: function () {
-      var numero = titulo.querySelector(".destaque__num");
-      if (numero) numero.textContent = Math.round(contagem.v);
-    }
-  });
+  if (titulo.querySelector(".destaque__num")) {
+    var contagem = { v: 1 };
+    gsap.to(contagem, {
+      v: 7, duration: 1.1, delay: 0.45, ease: "power1.out",
+      onUpdate: function () {
+        var numero = titulo.querySelector(".destaque__num");
+        if (numero) numero.textContent = Math.round(contagem.v);
+      }
+    });
+  }
 
   gsap.to(".capa [data-surge]", { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.1, ease: "power3.out", delay: 0.3 });
 
   /* ------------------------------------------------------------------------
-     2. Palco: o site se monta, depois troca de profissao em ciclo
+     2. Palco (so na home): o site se monta, depois troca de profissao em ciclo
      ------------------------------------------------------------------------ */
   var palco = document.querySelector(".palco");
-  var navegador = palco.querySelector(".navegador");
-  var celular = palco.querySelector(".celular--palco");
-  var rolagem = palco.querySelector('[data-demo="rolagem"]');
-  var tela = rolagem.parentElement;
-  var pecas = palco.querySelectorAll("[data-monta]");
+  var rolaTela = null;
+  if (palco) (function () {
+    var navegador = palco.querySelector(".navegador");
+    var celular = palco.querySelector(".celular--palco");
+    var rolagem = palco.querySelector('[data-demo="rolagem"]');
+    var tela = rolagem.parentElement;
+    var pecas = palco.querySelectorAll("[data-monta]");
 
-  var temas = [
-    { tema: "dentista", dominio: "drahelenamarques.com.br", nome: "Dra. Helena Marques", rotulo: "Cirurgiã-dentista · Ourinhos",
-      titulo: "Dentista para quem gosta de entender cada passo.", foto: "assets/demo-dentista.webp", rolagem: "assets/rolagem-dentista.webp" },
-    { tema: "advocacia", dominio: "vieiraalves.adv.br", nome: "Vieira & Alves", rotulo: "Advocacia · Ourinhos",
-      titulo: "Seu caso explicado sem juridiquês, do início ao fim.", foto: "assets/demo-advocacia.webp", rolagem: "assets/rolagem-advocacia.webp" },
-    { tema: "estetica", dominio: "studiolia.com.br", nome: "Studio Lia", rotulo: "Estética e bem-estar",
-      titulo: "Cuidado com a pele, no seu tempo e sem exagero.", foto: "assets/demo-estetica.webp", rolagem: "assets/rolagem-estetica.webp" }
-  ];
-  /* deixa as fotos dos outros temas no cache pra troca nao piscar */
-  temas.slice(1).forEach(function (t) { new Image().src = t.foto; new Image().src = t.rolagem; });
+    var temas = [
+      /* titulos iguais aos das capas dos sites-modelo: mudou la, muda aqui */
+      { tema: "dentista", dominio: "drahelenamarques.com.br", nome: "Dra. Helena Marques", rotulo: "Cirurgiã-dentista · Ourinhos",
+        titulo: "Dentista em Ourinhos para toda a família.", foto: "assets/demo-dentista.webp", rolagem: "assets/rolagem-dentista.webp" },
+      { tema: "advocacia", dominio: "vieiraalves.adv.br", nome: "Vieira & Alves", rotulo: "Advocacia · Ourinhos",
+        titulo: "Advocacia em Ourinhos com atendimento direto dos sócios.", foto: "assets/demo-advocacia.webp", rolagem: "assets/rolagem-advocacia.webp" },
+      { tema: "estetica", dominio: "studiolia.com.br", nome: "Studio Lia", rotulo: "Estética facial e corporal",
+        titulo: "Uma hora só sua.", foto: "assets/demo-estetica.webp", rolagem: "assets/rolagem-estetica.webp" }
+    ];
+    /* deixa as fotos dos outros temas no cache pra troca nao piscar */
+    temas.slice(1).forEach(function (t) { new Image().src = t.foto; new Image().src = t.rolagem; });
 
-  /* tela do celular do palco rola sozinha, ida e volta */
-  var rolaTela = gsap.to(rolagem, {
-    y: function () { return -(rolagem.offsetHeight - tela.clientHeight); },
-    duration: 12, ease: "sine.inOut", repeat: -1, yoyo: true, repeatDelay: 0.8, paused: true
-  });
+    /* tela do celular do palco rola sozinha, ida e volta */
+    rolaTela = gsap.to(rolagem, {
+      y: function () { return -(rolagem.offsetHeight - tela.clientHeight); },
+      duration: 12, ease: "sine.inOut", repeat: -1, yoyo: true, repeatDelay: 0.8, paused: true
+    });
 
-  gsap.timeline({ delay: 0.25, onComplete: function () { rolaTela.play(); gsap.delayedCall(4, trocaTema); } })
-    .fromTo(navegador, { autoAlpha: 0, y: 48, scale: 0.95 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" })
-    .fromTo(pecas, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.07, ease: "power2.out" }, "-=0.45")
-    .fromTo(celular, { autoAlpha: 0, x: 60, rotate: 5 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 1, ease: "power3.out" }, "-=0.7")
-    .fromTo(".etiqueta", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.55, stagger: 0.3, ease: "back.out(1.8)" }, "-=0.4");
+    gsap.timeline({ delay: 0.25, onComplete: function () { rolaTela.play(); gsap.delayedCall(4, trocaTema); } })
+      .fromTo(navegador, { autoAlpha: 0, y: 48, scale: 0.95 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" })
+      .fromTo(pecas, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.07, ease: "power2.out" }, "-=0.45")
+      .fromTo(celular, { autoAlpha: 0, x: 60, rotate: 5 }, { autoAlpha: 1, x: 0, rotate: 0, duration: 1, ease: "power3.out" }, "-=0.7")
+      .fromTo(".etiqueta", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.55, stagger: 0.3, ease: "back.out(1.8)" }, "-=0.4");
 
-  var palcoVisivel = true;
-  new IntersectionObserver(function (e) {
-    palcoVisivel = e[0].isIntersecting;
-    palcoVisivel ? rolaTela.resume() : rolaTela.pause();
-  }).observe(palco);
+    var palcoVisivel = true;
+    new IntersectionObserver(function (e) {
+      palcoVisivel = e[0].isIntersecting;
+      palcoVisivel ? rolaTela.resume() : rolaTela.pause();
+    }).observe(palco);
 
-  /* cada troca so agenda a proxima quando termina: nunca duas ao mesmo tempo */
-  var atual = 0;
-  function trocaTema() {
-    if (document.hidden || !palcoVisivel) { gsap.delayedCall(1, trocaTema); return; }
-    atual = (atual + 1) % temas.length;
-    var t = temas[atual];
-    var saem = Array.prototype.slice.call(pecas).concat(rolagem);
-    gsap.timeline({ onComplete: function () { gsap.delayedCall(4.5, trocaTema); } })
-      .to(saem, { autoAlpha: 0, y: -10, duration: 0.3, stagger: 0.03, ease: "power1.in" })
-      .add(function () {
-        navegador.dataset.tema = t.tema;
-        palco.querySelectorAll("[data-demo]").forEach(function (el) {
-          var chave = el.dataset.demo;
-          if (el.tagName === "IMG") el.src = t[chave];
-          else el.textContent = t[chave];
-        });
-        rolaTela.invalidate().restart();
-      })
-      .to(saem, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power2.out" }, "+=0.2");
+    /* cada troca so agenda a proxima quando termina: nunca duas ao mesmo tempo */
+    var atual = 0;
+    function trocaTema() {
+      if (document.hidden || !palcoVisivel) { gsap.delayedCall(1, trocaTema); return; }
+      atual = (atual + 1) % temas.length;
+      var t = temas[atual];
+      var saem = Array.prototype.slice.call(pecas).concat(rolagem);
+      gsap.timeline({ onComplete: function () { gsap.delayedCall(4.5, trocaTema); } })
+        .to(saem, { autoAlpha: 0, y: -10, duration: 0.3, stagger: 0.03, ease: "power1.in" })
+        .add(function () {
+          navegador.dataset.tema = t.tema;
+          palco.querySelectorAll("[data-demo]").forEach(function (el) {
+            var chave = el.dataset.demo;
+            if (el.tagName === "IMG") el.src = t[chave];
+            else el.textContent = t[chave];
+          });
+          rolaTela.invalidate().restart();
+        })
+        .to(saem, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power2.out" }, "+=0.2");
+    }
+  })();
+
+  /* ------------------------------------------------------------------------
+     2b. Leque do portfolio: celulares entram em cascata e cada tela rola
+         sozinha, num ritmo proprio; param quando o leque sai da tela
+     ------------------------------------------------------------------------ */
+  var leque = document.querySelector(".leque");
+  if (leque) {
+    var celularesLeque = leque.querySelectorAll(".celular");
+    gsap.fromTo(celularesLeque, { autoAlpha: 0, y: 80 },
+      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.12, ease: "power3.out", delay: 0.35 });
+    gsap.fromTo(".etiqueta--leque", { autoAlpha: 0, scale: 0.8 },
+      { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)", delay: 1.2 });
+
+    var rolagensLeque = Array.prototype.map.call(leque.querySelectorAll(".celular__tela img"), function (img, k) {
+      return gsap.to(img, {
+        y: function () { return -(img.offsetHeight - img.parentElement.clientHeight); },
+        duration: 11 + k * 2, ease: "sine.inOut", repeat: -1, yoyo: true, repeatDelay: 1, delay: 1.4 + k * 0.6
+      });
+    });
+    new IntersectionObserver(function (e) {
+      rolagensLeque.forEach(function (t) { e[0].isIntersecting ? t.resume() : t.pause(); });
+    }).observe(leque);
+    window.addEventListener("load", function () { rolagensLeque.forEach(function (t) { t.invalidate(); }); });
   }
 
   /* ------------------------------------------------------------------------
@@ -193,25 +223,38 @@
 
   /* Notas do Lighthouse: arco fecha e o numero conta ate 100, uma vez */
   var notas = document.querySelector(".notas");
-  var valores = notas.querySelectorAll(".nota__valor");
-  valores.forEach(function (v) { v.textContent = "0"; });
-  new IntersectionObserver(function (e, obs) {
-    if (!e[0].isIntersecting) return;
-    obs.disconnect();
-    notas.classList.add("visivel");
-    var n = { v: 0 };
-    gsap.to(n, {
-      v: 100, duration: 1.6, ease: "power2.out",
-      onUpdate: function () { valores.forEach(function (v) { v.textContent = Math.round(n.v); }); }
-    });
-  }, { threshold: 0.5 }).observe(notas);
+  if (notas) {
+    var valores = notas.querySelectorAll(".nota__valor");
+    valores.forEach(function (v) { v.textContent = "0"; });
+    new IntersectionObserver(function (e, obs) {
+      if (!e[0].isIntersecting) return;
+      obs.disconnect();
+      notas.classList.add("visivel");
+      var n = { v: 0 };
+      gsap.to(n, {
+        v: 100, duration: 1.6, ease: "power2.out",
+        onUpdate: function () { valores.forEach(function (v) { v.textContent = Math.round(n.v); }); }
+      });
+    }, { threshold: 0.5 }).observe(notas);
+  }
 
   /* ------------------------------------------------------------------------
-     5. Retrato com leve paralaxe; telas da galeria rolam com a pagina
+     5. Retrato com leve paralaxe; telas da galeria e dos casos rolam com a pagina
      ------------------------------------------------------------------------ */
-  gsap.fromTo(".retrato img",
-    { scale: 1.14, yPercent: -5 },
-    { scale: 1.14, yPercent: 5, ease: "none", scrollTrigger: { trigger: ".retrato", scrub: true } });
+  if (document.querySelector(".retrato")) {
+    gsap.fromTo(".retrato img",
+      { scale: 1.14, yPercent: -5 },
+      { scale: 1.14, yPercent: 5, ease: "none", scrollTrigger: { trigger: ".retrato", scrub: true } });
+  }
+
+  document.querySelectorAll(".caso").forEach(function (caso) {
+    var img = caso.querySelector(".celular__tela img");
+    gsap.to(img, {
+      y: function () { return -(img.offsetHeight - img.parentElement.clientHeight); },
+      ease: "none",
+      scrollTrigger: { trigger: caso, start: "top 85%", end: "bottom 15%", scrub: 0.8, invalidateOnRefresh: true }
+    });
+  });
 
   document.querySelectorAll(".galeria .celular__tela img").forEach(function (img, k) {
     var telaModelo = img.parentElement;
@@ -258,5 +301,5 @@
   }
 
   /* recalcula as medidas depois que as imagens e fontes chegam */
-  window.addEventListener("load", function () { ScrollTrigger.refresh(); rolaTela.invalidate(); });
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); if (rolaTela) rolaTela.invalidate(); });
 })();

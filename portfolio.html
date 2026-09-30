@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Portfólio | joaoneto.sites</title>
+<meta name="description" content="Sites feitos pelo João para dentistas, advogados, esteticistas e outros profissionais. Abra, navegue e veja cada recurso funcionando.">
+
+<link rel="canonical" href="https://joaoneto-sites.vercel.app/portfolio">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="joaoneto.sites">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://joaoneto-sites.vercel.app/portfolio">
+<meta property="og:title" content="Portfólio | joaoneto.sites">
+<meta property="og:description" content="Sites no ar para dentistas, advogados, esteticistas e outros profissionais. Abra e teste cada um.">
+<meta property="og:image" content="https://joaoneto-sites.vercel.app/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#F7F5F0">
+
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+
+<script src="js/boot.js"></script>
+<script src="js/vendor/gsap.min.js" defer></script>
+<script src="js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="js/vendor/SplitText.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<a class="so-leitor" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="topo">
+  <span class="progresso" aria-hidden="true"></span>
+  <div class="envelope topo__linha">
+    <a class="logo" href="./">joaoneto<span class="logo__ponto">.</span>sites</a>
+
+    <nav class="menu" aria-label="Seções">
+      <a href="./">Início</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#como">Como funciona</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+
+    <a class="botao botao--primario botao--pequeno"
+       href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20site.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+       target="_blank" rel="noopener">Quero meu site</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ==================================================================
+       1. Capa: titulo + leque de celulares rolando sozinhos
+       ================================================================== -->
+  <section class="capa">
+    <div class="envelope capa__grade">
+
+      <div class="capa__texto-bloco">
+        <p class="rotulo-portfolio" data-surge>Portfólio</p>
+        <h1 id="capa-titulo">Sites no ar, para você <span class="destaque">abrir e testar<svg class="destaque__traco" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 9c40-6 110-8 196-3"/></svg></span>.</h1>
+
+        <p class="capa__texto" data-surge>Três modelos feitos para profissões com regras próprias e o site de uma cliente. Toque em qualquer um e navegue como o seu cliente navegaria: no celular, lendo, clicando nos botões.</p>
+
+        <div class="botoes" data-surge>
+          <a class="botao botao--primario botao--ima"
+             href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20site.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+             target="_blank" rel="noopener">Quero um site assim</a>
+          <a class="botao botao--secundario" href="#trabalhos">Ver os trabalhos</a>
+        </div>
+
+        <ul class="numeros" data-surge>
+          <li><b>4</b> sites no ar</li>
+          <li><b>3</b> profissões com regras de conselho</li>
+          <li><b>7</b> dias úteis para ficar pronto</li>
+        </ul>
+      </div>
+
+      <div class="leque">
+        <a class="celular" href="#caso-dentista" aria-label="Ver o site de dentista">
+          <div class="celular__tela"><img src="assets/rolagem-dentista.webp" width="390" height="3600" alt="" decoding="async"></div>
+        </a>
+        <a class="celular" href="#caso-advocacia" aria-label="Ver o site de advocacia">
+          <div class="celular__tela"><img src="assets/rolagem-advocacia.webp" width="390" height="3600" alt="" decoding="async"></div>
+        </a>
+        <a class="celular" href="#caso-estetica" aria-label="Ver o site de estética">
+          <div class="celular__tela"><img src="assets/rolagem-estetica.webp" width="390" height="3600" alt="" decoding="async"></div>
+        </a>
+        <a class="celular" href="#caso-thaina" aria-label="Ver o site da Thainá Dias">
+          <div class="celular__tela"><img src="assets/rolagem-thaina.webp" width="390" height="3600" alt="" loading="lazy" decoding="async"></div>
+        </a>
+        <span class="etiqueta etiqueta--leque" aria-hidden="true">
+          <svg viewBox="0 0 16 16" focusable="false"><path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1 1.1 1.1z"/></svg>
+          Todos no ar agora
+        </span>
+      </div>
+
+    </div>
+
+    <nav class="envelope atalhos" aria-label="Ir direto para um trabalho">
+      <a href="#caso-dentista"><i class="atalhos__cor atalhos__cor--dentista"></i>Dentista</a>
+      <a href="#caso-advocacia"><i class="atalhos__cor atalhos__cor--advocacia"></i>Advocacia</a>
+      <a href="#caso-estetica"><i class="atalhos__cor atalhos__cor--estetica"></i>Estética</a>
+      <a href="#caso-thaina"><i class="atalhos__cor atalhos__cor--thaina"></i>Social media</a>
+    </nav>
+  </section>
+
+  <!-- ==================================================================
+       2. Trabalhos: um estudo de caso por site
+       ================================================================== -->
+  <section class="secao" id="trabalhos" aria-labelledby="t-trabalhos">
+    <div class="envelope">
+      <h2 id="t-trabalhos" data-linhas>Cada site foi pensado para a profissão.</h2>
+      <p class="secao__apoio" data-surge>O que o cliente dela pergunta, o que o conselho permite e o que faz a pessoa chamar no WhatsApp. Role a página: a tela de cada celular rola junto.</p>
+
+      <!-- Dentista -->
+      <article class="caso caso--dentista" id="caso-dentista" aria-labelledby="n-dentista">
+        <div class="caso__visual" data-surge>
+          <div class="navegador navegador--print">
+            <div class="navegador__barra">
+              <span class="navegador__bolinhas"><i></i><i></i><i></i></span>
+              <span class="navegador__endereco">
+                <svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+                drahelenamarques.com.br
+              </span>
+            </div>
+            <img src="assets/tela-dentista.webp" width="1280" height="800" alt="Capa do site-modelo de dentista no computador" loading="lazy" decoding="async">
+          </div>
+          <a class="celular" href="https://joaoneto-modelo-dentista.vercel.app" target="_blank" rel="noopener" aria-label="Abrir o site-modelo de dentista">
+            <div class="celular__tela"><img src="assets/rolagem-dentista.webp" width="390" height="3600" alt="" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+
+        <div class="caso__texto">
+          <p class="caso__tag" data-surge>Modelo · Dentista</p>
+          <h3 class="caso__nome" id="n-dentista" data-surge>Dra. Helena Marques</h3>
+          <p class="caso__resumo" data-surge>Para quem adia o dentista por medo: tudo explicado antes, avaliação sem pressa e urgência no mesmo dia.</p>
+          <ul class="caso__recursos" data-surge>
+            <li><b>“Aberto agora”</b> O site mostra se o consultório está aberto naquele minuto.</li>
+            <li><b>Tratamentos pela queixa</b> O paciente encontra o que precisa pelo que sente: dor, gengiva, dente quebrado.</li>
+            <li><b>Seção para quem tem medo</b> Responde a maior objeção antes da primeira consulta.</li>
+            <li><b>Nota do Google na capa</b> A confiança aparece antes de a pessoa rolar a página.</li>
+          </ul>
+          <p class="caso__regra" data-surge>Segue a Resolução 196/2019 do CFO: nome e CRO visíveis, sem preço de procedimento e sem antes e depois.</p>
+          <div class="botoes" data-surge>
+            <a class="botao botao--primario"
+               href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20o%20modelo%20de%20dentista%20no%20seu%20portf%C3%B3lio%20e%20quero%20um%20assim.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+               target="_blank" rel="noopener">Quero um assim</a>
+            <a class="botao botao--secundario" href="https://joaoneto-modelo-dentista.vercel.app" target="_blank" rel="noopener">Abrir o site ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Advocacia -->
+      <article class="caso caso--advocacia" id="caso-advocacia" aria-labelledby="n-advocacia">
+        <div class="caso__visual" data-surge>
+          <div class="navegador navegador--print">
+            <div class="navegador__barra">
+              <span class="navegador__bolinhas"><i></i><i></i><i></i></span>
+              <span class="navegador__endereco">
+                <svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+                vieiraalves.adv.br
+              </span>
+            </div>
+            <img src="assets/tela-advocacia.webp" width="1280" height="800" alt="Capa do site-modelo de escritório de advocacia no computador" loading="lazy" decoding="async">
+          </div>
+          <a class="celular" href="https://joaoneto-modelo-advocacia.vercel.app" target="_blank" rel="noopener" aria-label="Abrir o site-modelo de advocacia">
+            <div class="celular__tela"><img src="assets/rolagem-advocacia.webp" width="390" height="3600" alt="" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+
+        <div class="caso__texto">
+          <p class="caso__tag" data-surge>Modelo · Advocacia</p>
+          <h3 class="caso__nome" id="n-advocacia" data-surge>Vieira &amp; Alves Advocacia</h3>
+          <p class="caso__resumo" data-surge>Escritório com dois sócios que atendem pessoalmente. O site informa, organiza o primeiro contato e passa a sobriedade que a profissão pede.</p>
+          <ul class="caso__recursos" data-surge>
+            <li><b>Lista de documentos</b> A pessoa escolhe o assunto e marca o que já tem antes da reunião.</li>
+            <li><b>Informativo com prazos</b> Trabalho, herança e consumidor, com o conteúdo conferido com a lei.</li>
+            <li><b>Áreas com casos concretos</b> Divórcio, inventário, verbas rescisórias: o cliente se reconhece na hora.</li>
+            <li><b>Mapa e telefone</b> Endereço, horário e ligação a um toque.</li>
+          </ul>
+          <p class="caso__regra" data-surge>Segue o Provimento 205/2021 da OAB: caráter informativo, sem preço, sem promessa de resultado, com a OAB de cada advogado e o registro da sociedade.</p>
+          <div class="botoes" data-surge>
+            <a class="botao botao--primario"
+               href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20o%20modelo%20de%20advogado%20no%20seu%20portf%C3%B3lio%20e%20quero%20um%20assim.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+               target="_blank" rel="noopener">Quero um assim</a>
+            <a class="botao botao--secundario" href="https://joaoneto-modelo-advocacia.vercel.app" target="_blank" rel="noopener">Abrir o site ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Estetica -->
+      <article class="caso caso--estetica" id="caso-estetica" aria-labelledby="n-estetica">
+        <div class="caso__visual" data-surge>
+          <div class="navegador navegador--print">
+            <div class="navegador__barra">
+              <span class="navegador__bolinhas"><i></i><i></i><i></i></span>
+              <span class="navegador__endereco">
+                <svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+                studiolia.com.br
+              </span>
+            </div>
+            <img src="assets/tela-estetica.webp" width="1280" height="800" alt="Capa do site-modelo de estúdio de estética no computador" loading="lazy" decoding="async">
+          </div>
+          <a class="celular" href="https://joaoneto-modelo-estetica.vercel.app" target="_blank" rel="noopener" aria-label="Abrir o site-modelo de estética">
+            <div class="celular__tela"><img src="assets/rolagem-estetica.webp" width="390" height="3600" alt="" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+
+        <div class="caso__texto">
+          <p class="caso__tag" data-surge>Modelo · Estética</p>
+          <h3 class="caso__nome" id="n-estetica" data-surge>Studio Lia</h3>
+          <p class="caso__resumo" data-surge>Estúdio pequeno, uma cliente por vez. O site vende a experiência e deixa a pessoa escolher o horário já sabendo quanto custa.</p>
+          <ul class="caso__recursos" data-surge>
+            <li><b>Filtro de procedimentos</b> Rosto, corpo ou até 1 hora, com duração e valor de cada um.</li>
+            <li><b>Vale-presente</b> Seção pronta para vender presente em datas especiais.</li>
+            <li><b>Como é a visita</b> Linha do tempo da chegada à saída, para quem nunca foi.</li>
+            <li><b>Avaliações do Google</b> Na capa e em seção própria.</li>
+          </ul>
+          <p class="caso__regra" data-surge>Preço e duração à vista: a cliente decide antes de chamar, e a conversa no WhatsApp já começa no agendamento.</p>
+          <div class="botoes" data-surge>
+            <a class="botao botao--primario"
+               href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20o%20modelo%20de%20esteticista%20no%20seu%20portf%C3%B3lio%20e%20quero%20um%20assim.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+               target="_blank" rel="noopener">Quero um assim</a>
+            <a class="botao botao--secundario" href="https://joaoneto-modelo-estetica.vercel.app" target="_blank" rel="noopener">Abrir o site ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Thaina: cliente real -->
+      <article class="caso caso--thaina" id="caso-thaina" aria-labelledby="n-thaina">
+        <div class="caso__visual" data-surge>
+          <div class="navegador navegador--print">
+            <div class="navegador__barra">
+              <span class="navegador__bolinhas"><i></i><i></i><i></i></span>
+              <span class="navegador__endereco">
+                <svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M4 7V5a4 4 0 1 1 8 0v2h1v8H3V7h1Zm2 0h4V5a2 2 0 1 0-4 0v2Z"/></svg>
+                thainadias.vercel.app
+              </span>
+            </div>
+            <img src="assets/tela-thaina.webp" width="1280" height="800" alt="Capa do site da Thainá Dias no computador" loading="lazy" decoding="async">
+          </div>
+          <a class="celular" href="https://thainadias.vercel.app" target="_blank" rel="noopener" aria-label="Abrir o site da Thainá Dias">
+            <div class="celular__tela"><img src="assets/rolagem-thaina.webp" width="390" height="3600" alt="" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+
+        <div class="caso__texto">
+          <p class="caso__tag caso__tag--cliente" data-surge>Cliente · Social media</p>
+          <h3 class="caso__nome" id="n-thaina" data-surge>Thainá Dias</h3>
+          <p class="caso__resumo" data-surge>Social media e storymaker. O site apresenta quem ela é, para quem trabalha e como começar, e leva direto para a conversa.</p>
+          <ul class="caso__recursos" data-surge>
+            <li><b>Serviços explicados</b> O que ela faz, em linguagem de quem contrata.</li>
+            <li><b>Para quem é</b> O cliente certo se identifica logo de cara.</li>
+            <li><b>Como a gente começa</b> Os passos do primeiro contato, sem mistério.</li>
+            <li><b>Direto do feed</b> O Instagram dentro do site, como prova do trabalho.</li>
+          </ul>
+          <div class="botoes" data-surge>
+            <a class="botao botao--primario"
+               href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20o%20site%20da%20Thain%C3%A1%20no%20seu%20portf%C3%B3lio%20e%20quero%20um%20assim.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+               target="_blank" rel="noopener">Quero um assim</a>
+            <a class="botao botao--secundario" href="https://thainadias.vercel.app" target="_blank" rel="noopener">Abrir o site ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       3. Sua profissao: cada botao abre o WhatsApp ja com a profissao
+       ================================================================== -->
+  <section class="secao secao--salvia" aria-labelledby="t-profissao">
+    <div class="envelope sua">
+      <div>
+        <h2 id="t-profissao" data-linhas>Sua profissão não está aqui?</h2>
+        <p data-surge>O modelo é o ponto de partida. Eu adapto textos, cores e recursos para o seu trabalho e para as regras do seu conselho. Toque na sua profissão e me mande a mensagem pronta.</p>
+        <ul class="profissoes" data-surge>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20psic%C3%B3logo(a)%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Psicólogo(a)</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20nutricionista%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Nutricionista</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20fisioterapeuta%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Fisioterapeuta</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20m%C3%A9dico(a)%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Médico(a)</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20contador(a)%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Contador(a)</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20veterin%C3%A1rio(a)%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Veterinário(a)</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20arquiteto(a)%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Arquiteto(a)</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20personal%20trainer%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Personal trainer</a></li>
+          <li><a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D%20e%20quero%20um%20site." target="_blank" rel="noopener">Outra profissão</a></li>
+        </ul>
+      </div>
+
+      <div class="todo-site" data-surge>
+        <h3>Em todo site que eu faço</h3>
+        <ul>
+          <li>Botão para o seu WhatsApp em todas as partes</li>
+          <li>Perfeito no celular, onde quase todo mundo abre</li>
+          <li>Pronto para aparecer quando pesquisam seu nome</li>
+          <li>Textos escritos por mim, aprovados por você</li>
+          <li>Endereço do site registrado no seu nome</li>
+          <li>Regras de publicidade da sua profissão respeitadas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       4. Como funciona + preco em uma linha
+       ================================================================== -->
+  <section class="secao" id="como" aria-labelledby="t-como">
+    <div class="envelope">
+      <h2 id="t-como" data-linhas>Do primeiro contato ao site no ar.</h2>
+
+      <ol class="passos">
+        <li class="passo">
+          <p><b>Conversa de 15 minutos</b> pelo WhatsApp ou ligação, para eu entender o seu trabalho e qual modelo combina com você.</p>
+        </li>
+        <li class="passo">
+          <p><b>Você responde um formulário e manda as fotos.</b> Eu escrevo e monto tudo.</p>
+        </li>
+        <li class="passo">
+          <p><b>Em 7 dias úteis, você aprova.</b> Um ajuste, se precisar, e o site vai para o ar.</p>
+        </li>
+      </ol>
+
+      <div class="preco-linha" data-surge>
+        <p><b>Site Presença: R$ 397</b>, com hospedagem e endereço do site por 1 ano. Em até 3x no cartão, e você só paga o restante quando aprovar.</p>
+        <a class="botao botao--secundario" href="./#precos">Ver todos os planos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       5. Perguntas sobre o portfolio
+       ================================================================== -->
+  <section class="secao secao--salvia" id="duvidas" aria-labelledby="t-faq">
+    <div class="envelope">
+      <h2 id="t-faq" data-linhas>Perguntas frequentes</h2>
+
+      <div class="faq">
+        <details>
+          <summary>Esses sites são de clientes reais?</summary>
+          <p class="faq__resposta">O da Thainá, sim: é cliente e o site está no ar. Os de dentista, advocacia e estética são modelos que eu criei para mostrar o padrão do meu trabalho em cada profissão. Os nomes e dados neles são fictícios, e isso está avisado no topo de cada um.</p>
+        </details>
+
+        <details>
+          <summary>O meu site vai ser igual ao modelo?</summary>
+          <p class="faq__resposta">Não. O modelo mostra a estrutura e os recursos. O seu leva seu nome, suas fotos, suas cores e textos escritos sobre o seu trabalho.</p>
+        </details>
+
+        <details>
+          <summary>Posso juntar recursos de modelos diferentes?</summary>
+          <p class="faq__resposta">Pode. Quer a lista de documentos do site de advocacia no seu site de contabilidade, ou o vale-presente da estética no seu consultório? A gente combina isso na primeira conversa.</p>
+        </details>
+
+        <details>
+          <summary>Quanto tempo leva para ficar pronto?</summary>
+          <p class="faq__resposta">7 dias úteis para o Site Presença, contados a partir do momento em que você manda o formulário e as fotos.</p>
+        </details>
+
+        <details>
+          <summary>Os textos seguem as regras do meu conselho?</summary>
+          <p class="faq__resposta">Sim. Cada modelo foi escrito seguindo as regras da profissão, como o Provimento 205/2021 da OAB e a Resolução 196/2019 do CFO. No seu, eu faço o mesmo, e você aprova tudo antes de publicar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       6. Fechamento
+       ================================================================== -->
+  <section class="secao fechamento" aria-labelledby="t-fim">
+    <div class="envelope">
+      <h2 id="t-fim" data-linhas>Gostou de algum? O próximo pode ser o seu.</h2>
+
+      <p data-surge>Me chama no WhatsApp, me diz qual modelo mais combina com você e em 7 dias úteis seu site está no ar.</p>
+
+      <a class="botao botao--claro botao--grande botao--ima"
+         href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20site.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+         target="_blank" rel="noopener">Chamar o João no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="envelope">
+    <a class="logo" href="./">joaoneto<span class="logo__ponto">.</span>sites</a>
+
+    <ul class="rodape__dados">
+      <li>João Neto</li>
+      <li>Ourinhos-SP</li>
+      <li>
+        <a href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20site.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+           target="_blank" rel="noopener">WhatsApp (14) 99679-3639</a>
+      </li>
+      <li>
+        <a href="https://instagram.com/joaoneto.sites" target="_blank" rel="noopener">Instagram @joaoneto.sites</a>
+      </li>
+      <li>CNPJ 55.954.445/0001-00</li>
+    </ul>
+  </div>
+</footer>
+
+<a class="zap"
+   href="https://wa.me/5514996793639?text=Oi%2C%20Jo%C3%A3o!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20site.%20Sou%20%5Bprofiss%C3%A3o%5D%20em%20%5Bcidade%5D."
+   target="_blank" rel="noopener" aria-label="Falar com o João no WhatsApp">
+  <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.54-1.34-.74-1.83-.19-.48-.39-.41-.54-.42h-.46c-.16 0-.41.06-.63.31-.21.25-.81.79-.81 1.94s.83 2.25.95 2.4c.12.17 1.63 2.6 3.96 3.55.55.24.99.38 1.33.49.56.18 1.07.15 1.47.09.45-.07 1.39-.57 1.58-1.12.2-.55.2-1.02.14-1.12-.06-.1-.23-.16-.48-.28Z"/>
+  </svg>
+</a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Portfólio joaoneto.sites",
+  "url": "https://joaoneto-sites.vercel.app/portfolio",
+  "isPartOf": { "@type": "WebSite", "name": "joaoneto.sites", "url": "https://joaoneto-sites.vercel.app/" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://joaoneto-modelo-dentista.vercel.app/", "name": "Site-modelo de dentista" },
+      { "@type": "ListItem", "position": 2, "url": "https://joaoneto-modelo-advocacia.vercel.app/", "name": "Site-modelo de advocacia" },
+      { "@type": "ListItem", "position": 3, "url": "https://joaoneto-modelo-estetica.vercel.app/", "name": "Site-modelo de estética" },
+      { "@type": "ListItem", "position": 4, "url": "https://thainadias.vercel.app/", "name": "Site da Thainá Dias, social media" }
+    ]
+  }
+}
+</script>
+
+</body>
+</html>

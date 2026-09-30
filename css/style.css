@@ -1434,3 +1434,279 @@ a { color: var(--verde); }
   .recurso--mapa,
   .recurso--celular { grid-column: span 2; }
 }
+
+/* --------------------------------------------------------------------------
+   19. Pagina de portfolio
+   -------------------------------------------------------------------------- */
+.movimento .leque .celular { visibility: hidden; }
+
+.rotulo-portfolio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  margin-bottom: var(--e-2);
+  color: var(--verde);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.rotulo-portfolio::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ambar); }
+
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-2);
+  max-width: 30rem;
+  margin: var(--e-2) 0 0;
+  padding: var(--e-3) 0 0;
+  border-top: 1px solid rgba(29, 31, 30, 0.12);
+  list-style: none;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+.numeros li { display: grid; align-content: start; }
+.numeros b { font-family: var(--fonte-titulo); font-size: 2rem; line-height: 1.1; color: var(--verde); }
+
+/* Leque: celulares abertos como cartas, cada tela rolando sozinha.
+   rotate/translate individuais: o GSAP anima so o transform (entrada). */
+.leque {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: var(--e-4) var(--e-6);
+}
+.leque::before {
+  content: "";
+  position: absolute;
+  inset: -6% -8%;
+  background:
+    radial-gradient(closest-side, rgba(233, 169, 58, 0.3), transparent 72%) 80% 20% / 55% 55% no-repeat,
+    radial-gradient(closest-side, rgba(15, 92, 77, 0.2), transparent 72%) 15% 85% / 60% 60% no-repeat,
+    radial-gradient(closest-side, var(--salvia), transparent 78%) 50% 50% / 100% 100% no-repeat;
+  filter: blur(18px);
+  animation: respira 10s ease-in-out infinite alternate;
+}
+.leque .celular {
+  flex: none;
+  width: 40%;
+  max-width: 200px;
+  margin-inline: -5%;
+  padding: 2.4%;
+  border-radius: 13% / 6.4%;
+  transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), scale 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.leque .celular::after { top: 2.6%; height: 2%; }
+.leque .celular .celular__tela { border-radius: 11% / 5.3%; }
+.leque .celular:nth-child(1) { rotate: -8deg; translate: 0 26px; z-index: 1; }
+.leque .celular:nth-child(2) { rotate: -2deg; z-index: 3; }
+.leque .celular:nth-child(3) { rotate: 4deg; translate: 0 12px; z-index: 2; }
+.leque .celular:nth-child(4) { display: none; rotate: 10deg; translate: 0 34px; z-index: 1; }
+.leque .celular:hover { z-index: 4; scale: 1.05; }
+.etiqueta--leque { left: 2%; bottom: 6%; animation: flutua 5s ease-in-out infinite; }
+
+.atalhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1);
+  margin-top: var(--e-4);
+}
+.atalhos a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  min-height: 44px;
+  padding: 0 var(--e-3);
+  border: 1px solid rgba(29, 31, 30, 0.16);
+  border-radius: 999px;
+  color: var(--grafite);
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+.atalhos a:hover { background: var(--salvia); border-color: var(--verde); }
+.atalhos__cor--dentista, .caso--dentista { --acento: #E8795A; --escuro: #0E3B43; }
+.atalhos__cor--advocacia, .caso--advocacia { --acento: #9B2F40; --escuro: #121826; }
+.atalhos__cor--estetica, .caso--estetica { --acento: #7E4E72; --escuro: #2E2233; }
+.atalhos__cor--thaina, .caso--thaina { --acento: #C8A27A; --escuro: #2A1D17; }
+.atalhos__cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--acento);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--acento) 25%, transparent);
+}
+
+/* Estudo de caso: navegador com a capa + celular rolando por cima */
+.caso {
+  display: grid;
+  gap: var(--e-6);
+  align-items: center;
+  margin-top: clamp(4rem, 9vw, 7.5rem);
+}
+.caso__visual { position: relative; margin-bottom: var(--e-5); }
+.caso__visual::before {
+  content: "";
+  position: absolute;
+  inset: 8% 4% -10% 10%;
+  border-radius: 40px;
+  background: color-mix(in srgb, var(--acento) 16%, var(--papel));
+  rotate: -2deg;
+}
+
+.navegador--print {
+  position: relative;
+  top: auto;
+  width: 88%;
+  background: var(--papel);
+}
+/* o print tem a barra de rolagem na direita: o recorte esconde */
+.navegador--print img { width: 100%; aspect-ratio: 1262 / 800; object-fit: cover; object-position: left top; }
+
+.caso .celular {
+  position: absolute;
+  right: 0;
+  bottom: -12%;
+  z-index: 2;
+  width: 27%;
+  max-width: none;
+  padding: 1.1%;
+  border-radius: 13% / 6.4%;
+  box-shadow: 0 30px 50px -20px rgba(29, 31, 30, 0.55);
+  transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.caso .celular::after { top: 2.6%; height: 2%; }
+.caso .celular .celular__tela { border-radius: 11% / 5.3%; }
+.caso .celular:hover { translate: 0 -8px; }
+
+.caso__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  margin-bottom: var(--e-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.caso__tag::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--acento); }
+.caso__tag--cliente { padding: 4px 12px 4px 10px; border-radius: 999px; background: var(--verde); color: var(--papel); }
+.caso__tag--cliente::before { background: var(--ambar); }
+
+.caso__nome { margin-bottom: var(--e-2); font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.5rem); color: var(--escuro); }
+.caso__resumo { font-size: 1.0625rem; }
+
+.caso__recursos {
+  display: grid;
+  gap: var(--e-2);
+  margin: 0 0 var(--e-3);
+  padding: 0;
+  list-style: none;
+}
+.caso__recursos li {
+  position: relative;
+  padding-left: 34px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.caso__recursos li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1 1.1 1.1z' fill='%23F7F5F0'/%3E%3C/svg%3E") center / 13px no-repeat,
+    var(--verde);
+}
+.caso__recursos b { display: block; font-weight: 600; }
+
+.caso__regra {
+  padding: var(--e-2) var(--e-3);
+  border-left: 3px solid var(--ambar);
+  border-radius: 0 12px 12px 0;
+  background: var(--salvia);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+/* Sua profissao */
+.sua { display: grid; gap: var(--e-6); align-items: start; }
+.profissoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1);
+  margin: var(--e-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.profissoes a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--e-3);
+  border: 1.5px solid var(--verde);
+  border-radius: 999px;
+  background: var(--papel);
+  color: var(--verde);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, translate 0.25s ease;
+}
+.profissoes a:hover { background: var(--verde); color: var(--papel); translate: 0 -2px; }
+
+.todo-site {
+  padding: var(--e-4);
+  border-radius: 20px;
+  background: var(--papel);
+  box-shadow: 0 24px 50px -30px rgba(15, 92, 77, 0.5);
+}
+.todo-site h3 { margin-bottom: var(--e-2); }
+.todo-site ul { display: grid; gap: var(--e-1); margin: 0; padding: 0; list-style: none; }
+.todo-site li { position: relative; padding-left: 28px; font-size: 0.9375rem; }
+.todo-site li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.45em;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid var(--verde);
+  border-bottom: 2px solid var(--verde);
+  rotate: -45deg;
+}
+
+/* Preco em uma linha, abaixo dos passos */
+.preco-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2) var(--e-4);
+  margin-top: var(--e-6);
+  padding: var(--e-3) var(--e-4);
+  border: 2px solid var(--verde);
+  border-radius: 20px;
+}
+.preco-linha p { margin: 0; }
+
+@media (min-width: 600px) {
+  .leque .celular { width: 28%; margin-inline: -3.5%; }
+  .leque .celular:nth-child(4) { display: block; }
+}
+
+@media (min-width: 900px) {
+  .caso { grid-template-columns: 1.2fr 0.8fr; gap: var(--e-8); }
+  .caso:nth-of-type(even) { grid-template-columns: 0.8fr 1.2fr; }
+  .caso:nth-of-type(even) .caso__visual { order: 2; }
+  .caso:nth-of-type(even) .caso__visual::before { rotate: 2deg; }
+  .sua { grid-template-columns: 1.1fr 0.9fr; gap: var(--e-8); }
+}
+
+/* Link da galeria da home para o portfolio */
+.galeria__mais { margin: var(--e-6) auto 0; max-width: none; text-align: center; }
