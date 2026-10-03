@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <style>
+    @font-face { font-family: Fraunces; src: url('fonts/fraunces-latin.woff2'); font-weight: 600; }
+    @font-face { font-family: Manrope; src: url('fonts/manrope-latin.woff2'); font-weight: 400 600; }
+    text { font-family: Fraunces, Georgia, serif; font-weight: 600; }
+  </style>
+  <rect width="1200" height="630" fill="#F7F5F0"/>
+  <image href="joao.webp" x="870" y="0" width="330" height="630" preserveAspectRatio="xMidYMid slice"/>
+  <text x="80" y="106" font-size="34" fill="#142D4E">joaoneto<tspan fill="#E9A93A">.</tspan>sites</text>
+  <text x="80" y="411" font-size="72" letter-spacing="-2" fill="#1D1F1E">
+    <tspan x="80">Seu site profissional no</tspan>
+    <tspan x="80" dy="77">ar em 7 dias.</tspan>
+  </text>
+  <text x="80" y="558" font-size="26" fill="#142D4E" style="font-family: Manrope, Arial, sans-serif; font-weight: 600">A partir de R$ 997 · Eu faço tudo, você só aprova.</text>
+  <rect y="616" width="1200" height="14" fill="#142D4E"/>
+</svg>
